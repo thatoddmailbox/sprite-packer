@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	"log"
 	"io/ioutil"
+	"log"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -11,16 +11,16 @@ import (
 
 type Options struct {
 	FileListFile string
-	Files []FileEntry
-	OutputFile string
-	TileWidth int
-	TileHeight int
-	Width int
-	Height int
+	Files        []FileEntry
+	OutputFile   string
+	TileWidth    int
+	TileHeight   int
+	Width        int
+	Height       int
 }
 
 type FileEntry struct {
-	Path string
+	Path     string
 	Rotation int
 }
 
@@ -77,7 +77,9 @@ func main() {
 
 		if len(parts) > 1 {
 			rotation, err = strconv.Atoi(parts[1])
-			if err != nil { panic(err) }
+			if err != nil {
+				panic(err)
+			}
 		}
 
 		options.Files = append(options.Files, FileEntry{filepath.Join(fullBasePath, inputPath), rotation})

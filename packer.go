@@ -9,7 +9,7 @@ import (
 )
 
 func Packer_Pack(o Options) {
-	if o.Width * o.Height < len(o.Files) {
+	if o.Width*o.Height < len(o.Files) {
 		log.Fatal("Spritesheet is too small for given number of files!")
 	}
 
@@ -18,10 +18,14 @@ func Packer_Pack(o Options) {
 	x, y := 0, 0
 	for _, fileInfo := range o.Files {
 		file, err := os.Open(fileInfo.Path)
-		if err != nil { panic(err) }
+		if err != nil {
+			panic(err)
+		}
 		defer file.Close()
 		spriteImg, _, err := image.Decode(file)
-		if err != nil { panic(err) }
+		if err != nil {
+			panic(err)
+		}
 
 		// very high-quality code here
 		if fileInfo.Rotation == 90 {
@@ -37,7 +41,7 @@ func Packer_Pack(o Options) {
 			spriteImg = Utils_Rotate90(spriteImg)
 		}
 
-		draw.Draw(out, image.Rect(x*o.TileWidth, y*o.TileHeight, x*o.TileWidth + o.TileWidth, y*o.TileHeight + o.TileHeight), spriteImg, image.ZP, draw.Src)
+		draw.Draw(out, image.Rect(x*o.TileWidth, y*o.TileHeight, x*o.TileWidth+o.TileWidth, y*o.TileHeight+o.TileHeight), spriteImg, image.ZP, draw.Src)
 
 		x += 1
 		if x >= o.Width {
@@ -47,6 +51,8 @@ func Packer_Pack(o Options) {
 	}
 
 	outFile, err := os.OpenFile(o.OutputFile, os.O_RDWR|os.O_CREATE, 0755)
-	if err != nil { panic(err) }
+	if err != nil {
+		panic(err)
+	}
 	png.Encode(outFile, out)
 }
