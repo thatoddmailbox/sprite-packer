@@ -50,7 +50,7 @@ func Packer_Pack(o Options) {
 		}
 	}
 
-	outFile, err := os.OpenFile(o.OutputFile, os.O_RDWR|os.O_CREATE, 0755)
+	outFile, err := os.Create(o.OutputFile)
 	if err != nil {
 		panic(err)
 	}
