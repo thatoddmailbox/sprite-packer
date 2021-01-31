@@ -1,5 +1,5 @@
 # sprite-packer
-This program packs multiple, separate image files into a single spritesheet. It currently assumes that every tile in the spritesheet has the same dimension, and only supports PNG files.
+This program packs multiple image files into a single spritesheet. It currently assumes that every tile in the spritesheet has the same dimension, and only supports PNG files.
 
 ## Usage
 First, create a list of the images you want to include in your spritesheet. This list should be a text file where each line corresponds to a file name. You may include comments with the semicolon (`;`) character. For example:
